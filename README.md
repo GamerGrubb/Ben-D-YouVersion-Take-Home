@@ -1,15 +1,15 @@
-## Ben D YouVersion Take Home
+# Ben D YouVersion Take Home
 
 Ben Dodson's submission of the YouVersion take home project
 
-# **Setup & run instructions**
+## **Setup & run instructions**
 
-# **Decisions & Assumptions**
+## **Decisions & Assumptions**
 
 - New day is decided by the date and time from your device.
 - Using user's local date componets by "Date.UTC". Not using "getUTCDate()", which could return a different calendar day.
 
-# **What I'd do next**
+## **What I'd do next**
 
 - Impliment day navigation to later and earlier verse of the days.
 - Impliment a refresh button to
