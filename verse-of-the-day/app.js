@@ -1,4 +1,9 @@
-const statusElement = document.getElementById("status"); // Get the status element from the HTML document
+//const statusElement = document.getElementById("status"); // Get the status element from the HTML document
+//const retryButton = document.getElementById("retryButton"); // Get the retry button element from the HTML document
+const statusElement = document.getElementById("status");
+const referenceElement = document.getElementById("reference");
+const verseElement = document.getElementById("verse");
+const retryButton = document.getElementById("retryButton");
 const today = new Date();
 const todayUTC = Date.UTC(
   today.getFullYear(),
@@ -11,9 +16,10 @@ let currentDay =
   Math.floor((todayUTC - startOfYearUTC) / millisecondsPerDay) + 1;
 console.log("current day of year:", currentDay); // Log today's date for debugging purposes
 async function getVerseOfTheDay() {
+  referenceElement.textContent = "";
+  verseElement.textContent = "";
+  retryButton.hidden = true;
   statusElement.textContent = "Loading verse...";
-  const referenceElement = document.getElementById("reference");
-  const verseElement = document.getElementById("verse");
   try {
     const response = await fetch(
       // Fetch the verse of the day from the API according to [currentDay]
@@ -51,7 +57,9 @@ async function getVerseOfTheDay() {
     statusElement.textContent = ""; // Clear the status message after successful load
   } catch (error) {
     statusElement.textContent = "Couldn't load the verse. Please try again.";
+    retryButton.hidden = false;
     console.error(error); // Log any errors that occur during the fetch or parsing
   }
 }
+retryButton.addEventListener("click", getVerseOfTheDay);
 getVerseOfTheDay();
